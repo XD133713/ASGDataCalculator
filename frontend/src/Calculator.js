@@ -187,6 +187,7 @@ function CalculatorRow({index, data, onRemove, disableRemove, onDuplicate, moveU
                 },
                 body: JSON.stringify({
                     name: name,
+                    created_at: new Date().toISOString(),
                     data: {name, startingHeight, angle, fps, mps, weight, toJoule, joule, hopUp, range, showTrajectory},
                 }),
             });
@@ -368,3 +369,4 @@ export default function Calculator() {
     );
 
 }
+
