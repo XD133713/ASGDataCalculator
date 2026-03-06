@@ -60,7 +60,7 @@ class LoginSerializer(serializers.Serializer):
 
         if not username:
             raise serializers.ValidationError({
-                "username": "Nazwa nie może być pusta"
+                "username": "email nie może być pusty"
             })
 
         if not password:
@@ -104,6 +104,7 @@ class SavedCalculatorsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavedCalculator
         fields = ['id', 'user', 'user_email', 'name', 'created_at', 'user_id']
+
 
 
 
