@@ -35,8 +35,7 @@ function Tables() {
             if (!res.ok) throw new Error("Błąd pobierania danych pogody");
             const data = await res.json();
             setWeather(data.hourly);
-            const firstDate = data.hourly.time[0].split("T")[0];
-            setSelectedDate(firstDate);
+            setSelectedDate(data.hourly.time[0].split("T")[0]);
         } catch (err) {
             console.error(err);
         }
@@ -52,11 +51,11 @@ function Tables() {
 
     const availableDates = [...new Set(weather.time.map(t => t.split("T")[0]))];
 
-    const filteredIndexes = weather.time
+    const filteredDates = weather.time
         .map((t, i) => t.startsWith(selectedDate) ? i : null)
         .filter(i => i !== null);
 
-    const getWindArrow = (degree) => { 
+    const windDirectionArrow = (degree) => { 
         const directions = ["⬇️", "↙️", "⬅️", "↖️", "⬆️", "↗️", "➡️", "↘️"];
         const index = Math.round(degree/45)%8;
         return directions[index];
@@ -85,13 +84,13 @@ function Tables() {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredIndexes.map(index => (
+                            {filteredDates.map(index => (
                                 <tr key={weather.time[index]}>
                                     <td>{weather.time[index].split("T")[1]}</td>
                                     <td>{weather.temperature_2m[index]}</td>
                                     <td>{weather.precipitation[index]}</td>
                                     <td>{weather.windspeed_10m[index]}</td>
-                                    <td>{getWindArrow(weather.winddirection_10m[index])}{" "}({weather.winddirection_10m[index]})</td>
+                                    <td>{windDirectionArrow(weather.winddirection_10m[index])}{" "}({weather.winddirection_10m[index]})</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -103,6 +102,7 @@ function Tables() {
 
 
 export default Tables;
+
 
 
 
