@@ -31,8 +31,7 @@ function Tables() {
         const {lat,lon} = cities[cityName];
         setLoading(true);
         try {
-            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}
-            &hourly=temperature_2m,precipitation,windspeed_10m,winddirection_10m&forecast_days=7&timezone=Europe/Warsaw`);
+            const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,precipitation,windspeed_10m,winddirection_10m&forecast_days=7&timezone=Europe/Warsaw`);
             if (!res.ok) throw new Error("Błąd pobierania danych pogody");
             const data = await res.json();
             setWeather(data.hourly);
@@ -103,6 +102,7 @@ function Tables() {
 
 
 export default Tables;
+
 
 
 
