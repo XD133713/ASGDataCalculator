@@ -10,4 +10,6 @@ class SavedCalculator(models.Model):
     def __str__(self):
         return f"{self.name} (user_id={self.user.email})"
 
-
+class UserCounter(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    login_amount = models.IntegerField(default=0)
