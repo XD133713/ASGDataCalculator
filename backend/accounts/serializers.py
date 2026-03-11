@@ -84,6 +84,7 @@ class LoginSerializer(serializers.Serializer):
         refresh = RefreshToken.for_user(user)
 
         return {
+            "user": user,
             "access": str(refresh.access_token),
             "refresh": str(refresh),
         }
@@ -104,6 +105,7 @@ class SavedCalculatorsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavedCalculator
         fields = ['id', 'user', 'user_email', 'name', 'created_at', 'user_id']
+
 
 
 
