@@ -207,3 +207,21 @@ nav a:hover{
     background: darkgray;
 }
 
+.green-record{
+    background: #9FE371;
+}
+
+.yellow-record{
+    background: #E3D471;
+}
+
+.red-record{
+    background: #E38071;
+}
+
+.white-record{
+    background: #DEDEDE;
+}
+
+
+
