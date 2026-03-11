@@ -15,7 +15,8 @@ class RegisterViewSet(APIView):
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            user = serializer.save()
+            UserCounter.objects.create(user=user)
             return Response({
                 "message": "Użytkownik utworzony",
             }, status=status.HTTP_201_CREATED)
@@ -27,6 +28,10 @@ class LoginViewSet(APIView):
         serializer = LoginSerializer(data=request.data)
         if not serializer.is_valid():
             return Response (serializer.errors, status=400)
+        user = serializer.validated_data["user"]
+        counter = UserCounter.objects.get(user=user)
+        counter.login_amount += 1
+        counter.save()
         return Response (serializer.validated_data, status=200)
 
 class SavedCalculatorViewSet(ModelViewSet):
@@ -36,8 +41,8 @@ class SavedCalculatorViewSet(ModelViewSet):
         return SavedCalculator.objects.filter(user=self.request.user)
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-        counter = UserCounter.objects.get(user=self.reqest.user)
-        counter.calcaulators_created += 1
+        counter = UserCounter.objects.get(user=self.request.user)
+        counter.calculator_amount += 1
         counter.save()
 
 class NameView(APIView):
@@ -64,23 +69,9 @@ class SavedCalculatorsViewSet(viewsets.ModelViewSet):
 class UserReportViewSet(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
-        login_amount = UserCounter.objects.get(user=request.user).login_amount
-        calculators_amount = SavedCalculator.objects.filter(user=request.user).count()
+        counter = UserCounter.objects.get(user=request.user)
         return Response({
-            "login_amount": login_amount,
-            "calculators_amount": calculators_amount
+            "login_amount": counter.login_amount,
+            "calculator_amount": counter.calculator_amount
         })
-
-
-
-
-
-
-
-
-
-
-
-
-
 
