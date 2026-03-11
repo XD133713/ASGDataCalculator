@@ -86,11 +86,11 @@ function Tables() {
                         <tbody>
                             {filteredDates.map(index => (
                                 <tr key={weather.time[index]}>
-                                    <td>{weather.time[index].split("T")[1]}</td>
-                                    <td>{weather.temperature_2m[index]}</td>
-                                    <td>{weather.precipitation[index]}</td>
-                                    <td>{weather.windspeed_10m[index]}</td>
-                                    <td>{windDirectionArrow(weather.winddirection_10m[index])}{" "}({weather.winddirection_10m[index]})</td>
+                                    <td className="white-record">{weather.time[index].split("T")[1]}</td>
+                                    <td className={(weather.temperature_2m[index] > 20) ? "green-record" : (weather.temperature_2m[index] < 5) ? "red-record" : "yellow-record"}>{weather.temperature_2m[index]}</td>
+                                    <td className={(weather.precipitation[index] < 0.1) ? "green-record" : (weather.precipitation[index] > 7.5) ? "red-record" : "yellow-record"}>{weather.precipitation[index]}</td>
+                                    <td className={(weather.windspeed_10m[index] < 20) ? "green-record" : (weather.windspeed_10m[index] > 39) ? "red-record" : "yellow-record"}>{weather.windspeed_10m[index]}</td>
+                                    <td className="white-record">{windDirectionArrow(weather.winddirection_10m[index])}{" "}({weather.winddirection_10m[index]})</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -102,6 +102,7 @@ function Tables() {
 
 
 export default Tables;
+
 
 
 
