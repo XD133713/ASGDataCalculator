@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import SavedCalculator
+from .models import SavedCalculator, UserCounter
 
 @admin.register(SavedCalculator)
 class SavedCalculatorAdmin(admin.ModelAdmin):
@@ -11,6 +11,7 @@ class SavedCalculatorAdmin(admin.ModelAdmin):
 class UserCounterAdmin(admin.ModelAdmin):
     list_display = ('user', 'login_amount', 'calculator')
     search_fields = ('user_email',)
+
 
 
 
