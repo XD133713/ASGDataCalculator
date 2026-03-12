@@ -55,7 +55,7 @@ function App() {
       <nav>
 
         {loggedIn && isAdmin && (<Link to="/adminPanel">Opcje Admina</Link>)}
-        <Link to="/report">Raport</Link>
+        {loggedIn && (<Link to="/report">Raport</Link>)}
         <Link to="/weather">Pogoda</Link>
         <Link to="/calculator">Kalkulator</Link>
 
@@ -76,7 +76,7 @@ function App() {
       </nav>
       <Routes>
         {loggedIn && isAdmin && (<Route path="/adminPanel" element={<AdminPanel/>}/>)}
-        <Route path="/report" element={<Report/>}/>
+        {loggedIn && isAdmin && (<Route path="/report" element={<Report/>}/>)}
         <Route path="/weather" element={<Weather/>}/>
         <Route path="/calculator" element={<Calculator/>}/>
 
