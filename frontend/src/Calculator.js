@@ -209,10 +209,10 @@ function CalculatorRow({index, data, onRemove, disableRemove, onDuplicate, moveU
             </div>
             <div className="calculator-values">
                 <div className="values-column pair">
-                    <label>Height</label>
+                    <label>Wysokość (m)</label>
                     <input placeholder="StartingHeight" type="number" step="1" value={startingHeight}
                            onChange={(e) => handleStartingHeightChange(Number(e.target.value))}/>
-                    <label>Angle</label>
+                    <label>Kąt</label>
                     <input placeholder="Angle" type="number" step="1" value={angle}
                            onChange={(e) => handleAngleChange(Number(e.target.value))}/>
                 </div>
@@ -225,14 +225,14 @@ function CalculatorRow({index, data, onRemove, disableRemove, onDuplicate, moveU
                            onChange={(e) => handleMpsChange(Number(e.target.value))}/>
                 </div>
                 <div className="values-column pair">
-                    <label>Weight (g)</label>
+                    <label>Waga (g)</label>
                     <input placeholder="Weight (g)" type="number" step="0.01" value={weight}
                            onChange={(e) => handleWeightChange(Number(e.target.value))}/>
                     {(!toJoule) && (<button onClick={() => setToJoule(true)}>{"FPS/MPS ← (g) J"}</button> )}
                     {(toJoule) && (<button onClick={() => setToJoule(false)}>{"FPS/MPS (g) → J"}</button> )}
                 </div>
                 <div className="values-column solo">
-                    <label>Joule</label>
+                    <label>Dżule (J)</label>
                     <input placeholder="J" type="number" step="0.01" value={joule}
                            onChange={(e) => handleJouleChange(Number(e.target.value))}/>
                 </div>
@@ -242,7 +242,7 @@ function CalculatorRow({index, data, onRemove, disableRemove, onDuplicate, moveU
                            onChange={(e) => handleHopUpChange(Number(e.target.value))}/>
                 </div>
                 <div className="values-column solo">
-                    <label>Range</label>
+                    <label>Zasięg</label>
                     <input placeholder="Range (m)" type="number" value={range} readOnly/>
                 </div>
                 <div className="buttons">
@@ -369,4 +369,5 @@ export default function Calculator() {
     );
 
 }
+
 
