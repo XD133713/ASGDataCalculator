@@ -4,6 +4,7 @@ import API_URL from "./api";
 function AdminPanel() {
     const [users, setUsers] = useState([]);
     const [savedCalculators, setSavedCalculators] = useState([]);
+    const [report, setReport] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -123,22 +124,26 @@ function AdminPanel() {
         }
             
         try {
-            const [usersRes, savedCalculatorsRes] = await Promise.all([
+            const [usersRes, savedCalculatorsRes, reportRes] = await Promise.all([
                 fetch(`${API_URL}/accounts/users/`, {
                     headers: {Authorization: `Bearer ${token}`, }, }),
                 fetch(`${API_URL}/accounts/savedCalculators/`, {
                     headers: {Authorization: `Bearer ${token}`, }, }),
+                fetch(`${API_URL}/accounts/adminReport/`, {
+                    headers: {Authorization: `Bearer ${token}`, }, }),
             ]);
 
-            if (!usersRes.ok || !savedCalculatorsRes.ok) {
+            if (!usersRes.ok || !savedCalculatorsRes.ok || !reportRes.ok) {
                 throw new Error("Błąd danych");
             }
 
             const usersData = await usersRes.json();
             const savedCalculatorsData = await savedCalculatorsRes.json();
+            const reportData = await reportRes.json();
             
             setUsers(usersData);
             setSavedCalculators(savedCalculatorsData);
+            setReport(reportData);
             setLoading(false);
             
         } catch (err) {
@@ -219,6 +224,32 @@ function AdminPanel() {
                                 <td>{r.created_at}</td>
                                 <td><button onClick={() => {setCalculatorToEdit({...r}); setShowCalculatorEditWindow(true);}}>Edytuj</button></td>
                                 <td><button onClick={() => deleteCalculator(r.id)}>Usuń</button></td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                )}
+
+                <h2>Raport ogólny</h2>
+                {report.length === 0 ? (
+                    <p>Brak danych.</p>
+                ) : (
+                    <table className="table">
+                        <thead>
+                        <tr>
+                            <th>Użytkownik Id</th>
+                            <th>Użytkownik Email</th>
+                            <th>Liczba logowań</th>
+                            <th>Ilość zapisań kalkulatora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {report.map((r) => (
+                            <tr key={r.user_id}>
+                                <td>{r.user_id}</td>
+                                <td>{r.user_email}</td>
+                                <td>{r.login_amount}</td>
+                                <td>{r.calculator_amount}</td>
                             </tr>
                         ))}
                         </tbody>
