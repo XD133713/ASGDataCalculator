@@ -13,7 +13,9 @@ urlpatterns = [
     path('token/', LoginViewSet.as_view(), name='token'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('name/', NameView.as_view(), name='name'),
+    path('adminReport/', AdminReportView.as_view(), name='adminReport'),
     path('', include(router.urls)),
 ]
+
 
 
