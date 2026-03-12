@@ -7,6 +7,7 @@ function Report() {
   const fetchData = async () => {
       const token = localStorage.getItem("access");
       const res = await fetch(`${API_URL}/accounts/report/`, {headers: {Authorization: `Bearer ${token}`}})
+      if (!res.ok) {console.error("Błąd pobierania danych"); return;}
       const data = await res.json();
       setReport(data);
     }
