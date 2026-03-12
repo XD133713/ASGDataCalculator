@@ -7,7 +7,6 @@ from rest_framework.permissions import IsAdminUser
 from rest_framework import viewsets
 from .models import SavedCalculator, UserCounter
 from .serializers import RegisterSerializer, SavedCalculatorSerializer, LoginSerializer, SavedCalculatorsSerializer, UsersSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib.auth.models import User
 
 class RegisterViewSet(APIView):
@@ -82,7 +81,7 @@ class AdminReportViewSet(APIView):
     permission_classes = [IsAdminUser]
     def get(self, request):
         users = User.objects.all()
-        data=[]
+        data = []
         for user in users:
             counter = UserCounter.objects.get(user=user)
             data.append({
@@ -92,6 +91,7 @@ class AdminReportViewSet(APIView):
                 "calculator_amount": counter.calculator_amount
             })
         return Response(data)
+
 
 
 
