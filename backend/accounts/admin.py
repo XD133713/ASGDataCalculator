@@ -9,8 +9,9 @@ class SavedCalculatorAdmin(admin.ModelAdmin):
 
 @admin.register(UserCounter)
 class UserCounterAdmin(admin.ModelAdmin):
-    list_display = ('user', 'login_amount', 'calculator')
+    list_display = ('user', 'login_amount', 'calculator_amount')
     search_fields = ('user_email',)
+
 
 
 
