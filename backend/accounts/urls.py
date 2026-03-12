@@ -14,9 +14,10 @@ urlpatterns = [
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('name/', NameView.as_view(), name='name'),
     path('adminReport/', AdminReportViewSet.as_view(), name='adminReport'),
-    path('userReport/', UserReportViewSet.as_view(), name='userReport'),
+    path('report/', UserReportViewSet.as_view(), name='report'),
     path('', include(router.urls)),
 ]
+
 
 
 
