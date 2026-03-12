@@ -32,7 +32,10 @@ class LoginViewSet(APIView):
         counter, created = UserCounter.objects.get_or_create(user=user)
         counter.login_amount += 1
         counter.save()
-        return Response (serializer.validated_data, status=200)
+        return Response ({
+            "access": serializer.validated_data["access"],
+            "refresh": serializer.validated_data["refresh"],
+        }, status=200)
 
 class SavedCalculatorViewSet(ModelViewSet):
     serializer_class = SavedCalculatorSerializer
@@ -89,6 +92,7 @@ class AdminReportViewSet(APIView):
                 "calculator_amount": counter.calculator_amount
             })
         return Response(data)
+
 
 
 
