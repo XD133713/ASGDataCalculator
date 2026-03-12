@@ -29,7 +29,7 @@ class LoginViewSet(APIView):
         if not serializer.is_valid():
             return Response (serializer.errors, status=400)
         user = serializer.validated_data["user"]
-        counter = UserCounter.objects.get(user=user)
+        counter, created = UserCounter.objects.get_or_create(user=user)
         counter.login_amount += 1
         counter.save()
         return Response (serializer.validated_data, status=200)
@@ -89,5 +89,6 @@ class AdminReportViewSet(APIView):
                 "calculator_amount": counter.calculator_amount
             })
         return Response(data)
+
 
 
