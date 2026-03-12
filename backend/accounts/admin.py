@@ -7,9 +7,10 @@ class SavedCalculatorAdmin(admin.ModelAdmin):
     list_filter = ('user',)
     search_fields = ('name',)
 
-@admin.register(SavedCalculator)
+@admin.register(UserCounter)
 class UserCounterAdmin(admin.ModelAdmin):
     list_display = ('user', 'login_amount', 'calculator')
     search_fields = ('user_email',)
+
 
 
