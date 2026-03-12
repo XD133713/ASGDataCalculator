@@ -18,9 +18,9 @@ function App() {
     const logout = useCallback(() => {
         localStorage.removeItem("access");
         localStorage.removeItem("refresh");
-        setLoggedIn(false)
+        setLoggedIn(false);
         setUserName(null);
-        setIsAdmin(false)
+        setIsAdmin(false);
     }, []);
 
     const myName = useCallback(async () => {
