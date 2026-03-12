@@ -76,7 +76,7 @@ function App() {
       </nav>
       <Routes>
         {loggedIn && isAdmin && (<Route path="/adminPanel" element={<AdminPanel/>}/>)}
-        {loggedIn && isAdmin && (<Route path="/report" element={<Report/>}/>)}
+        {loggedIn && (<Route path="/report" element={<Report/>}/>)}
         <Route path="/weather" element={<Weather/>}/>
         <Route path="/calculator" element={<Calculator/>}/>
 
