@@ -2,7 +2,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import SavedCalculator
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -105,40 +104,5 @@ class SavedCalculatorsSerializer(serializers.ModelSerializer):
     class Meta:
         model = SavedCalculator
         fields = ['id', 'user', 'user_email', 'name', 'created_at', 'user_id']
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
