@@ -133,6 +133,10 @@ function AdminPanel() {
                     headers: {Authorization: `Bearer ${token}`, }, }),
             ]);
 
+            console.log(usersRes.status)
+            console.log(savedCalculatorsRes.status)
+            console.log(reportRes.status)
+
             if (!usersRes.ok || !savedCalculatorsRes.ok || !reportRes.ok) {
                 throw new Error("Błąd danych");
             }
