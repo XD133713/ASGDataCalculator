@@ -75,3 +75,19 @@ class UserReportViewSet(APIView):
             "calculator_amount": counter.calculator_amount
         })
 
+class AdminReportViewSet(APIView):
+    permission_classes = [IsAdminUser]
+    def get(self, request):
+        users = User.objects.all()
+        data=[]
+        for user in users:
+            counter = UserCounter.objects.get(user=user)
+            data.append({
+                "user_id": user.id,
+                "user_email": user.email,
+                "login_amount": counter.login_amount,
+                "calculator_amount": counter.calculator_amount
+            })
+        return Response(data)
+
+
