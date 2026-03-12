@@ -8,10 +8,11 @@ class SavedCalculator(models.Model):
     created_at = models.DateTimeField()
 
     def __str__(self):
-        return f"{self.name} (user_id={self.user.email})"
+        return f"{self.name} (user={self.user.email})"
 
 class UserCounter(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     login_amount = models.IntegerField(default=0)
     calculator_amount = models.IntegerField(default=0)
+
 
