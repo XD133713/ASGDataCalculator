@@ -105,11 +105,11 @@ function CalculatorRow({index, data, onRemove, disableRemove, onDuplicate, moveU
                 ctx.stroke();
             }
         }
-        ctx.fillText("distance [m]", canvas.width - 100, offset.y + 27);
+        ctx.fillText("odległość [m]", canvas.width - 100, offset.y + 27);
         ctx.save();
         ctx.translate(offset.x - 35, offset.y - 60);
         ctx.rotate(-Math.PI / 2);
-        ctx.fillText("height [m]", 30, 10);
+        ctx.fillText("wysokość [m]", 30, 10);
         ctx.restore();
         ctx.save();
         ctx.translate(offset.x, offset.y);
@@ -369,5 +369,6 @@ export default function Calculator() {
     );
 
 }
+
 
 
