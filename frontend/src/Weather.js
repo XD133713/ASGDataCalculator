@@ -64,7 +64,21 @@ function Tables() {
     return (
         <div>
             <h2>Pogoda</h2>
-
+            <div>
+                <div className="legend-item>
+                    <span className="legend-sqare green-record"></span>
+                    - Przyjazne warunki
+                </div>
+                <div className="legend-item>
+                    <span className="legend-sqare yellow-record"></span>
+                    - Umiarkowane warunki
+                </div>
+                <div className="legend-item>
+                    <span className="legend-sqare red-record"></span>
+                    - Nieprzyjazne warunki
+                </div>
+            </div>
+        
             <select value={selectedCity} onChange={(e) => setSelectedCity(e.target.value)}>
                 {Object.keys(cities).map((city) => (<option key={city} value={city}>{city}</option>))}
             </select>
