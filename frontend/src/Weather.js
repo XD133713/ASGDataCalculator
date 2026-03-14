@@ -65,16 +65,16 @@ function Tables() {
         <div>
             <h2>Pogoda</h2>
             <div>
-                <div className="legend-item>
-                    <span className="legend-sqare green-record"></span>
+                <div className="legend-item">
+                    <span className="legend-square green-record"></span>
                     - Przyjazne warunki
                 </div>
-                <div className="legend-item>
-                    <span className="legend-sqare yellow-record"></span>
+                <div className="legend-item">
+                    <span className="legend-square yellow-record"></span>
                     - Umiarkowane warunki
                 </div>
-                <div className="legend-item>
-                    <span className="legend-sqare red-record"></span>
+                <div className="legend-item">
+                    <span className="legend-square red-record"></span>
                     - Nieprzyjazne warunki
                 </div>
             </div>
