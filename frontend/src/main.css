@@ -223,9 +223,14 @@ nav a:hover{
     background: #DEDEDE;
 }
 
-.legend{
+.legend-item{
     display: flex;
     align-items: center;
+}
+
+.legend-sqare{
+    width: 20px;
+    height: 20px;
 }
 
 
