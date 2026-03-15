@@ -9,7 +9,7 @@ from .models import SavedCalculator, UserCounter
 from .serializers import RegisterSerializer, SavedCalculatorSerializer, LoginSerializer, SavedCalculatorsSerializer, UsersSerializer
 from django.contrib.auth.models import User
 
-class RegisterViewSet(APIView):
+class RegisterView(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
@@ -21,7 +21,7 @@ class RegisterViewSet(APIView):
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class LoginViewSet(APIView):
+class LoginView(APIView):
     permission_classes = [AllowAny]
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
@@ -68,7 +68,7 @@ class SavedCalculatorsViewSet(viewsets.ModelViewSet):
     serializer_class = SavedCalculatorsSerializer
     permission_classes = [IsAdminUser]
 
-class UserReportViewSet(APIView):
+class UserReportView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
         counter = UserCounter.objects.get(user=request.user)
@@ -77,7 +77,7 @@ class UserReportViewSet(APIView):
             "calculator_amount": counter.calculator_amount
         })
 
-class AdminReportViewSet(APIView):
+class AdminReportView(APIView):
     permission_classes = [IsAdminUser]
     def get(self, request):
         users = User.objects.all()
