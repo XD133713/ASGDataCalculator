@@ -21,7 +21,7 @@ const cities = {
     Zielona_Góra: { lat:51.9355, lon: 15.5064 },
 };    
 
-function Tables() {
+function Weather() {
     const [selectedCity, setSelectedCity] = useState("Warszawa");
     const [selectedDate, setSelectedDate] = useState(null);
     const [weather, setWeather] = useState(null);
@@ -115,37 +115,6 @@ function Tables() {
 }
 
 
-export default Tables;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Weather;
 
 
