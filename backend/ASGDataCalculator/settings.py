@@ -24,7 +24,6 @@ ALLOWED_HOSTS = os.environ.get(
 # Application definition
 
 INSTALLED_APPS = [
-    'api',
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
