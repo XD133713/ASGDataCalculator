@@ -1,8 +1,9 @@
-from django.contrib.auth import authenticate
-from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, get_user_model
 from rest_framework import serializers
 from .models import SavedCalculator
 from rest_framework_simplejwt.tokens import RefreshToken
+
+User = get_user_model()
 
 class RegisterSerializer(serializers.ModelSerializer):
     name = serializers.CharField(required=True, error_messages={
@@ -42,7 +43,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         validated_data.pop('repeatPassword')
 
         user = User.objects.create_user(
-            username=validated_data['email'],
             email=validated_data['email'],
             password=password,
             first_name=validated_data['name'],
@@ -71,7 +71,7 @@ class LoginSerializer(serializers.Serializer):
                 "email": "Użytkownik nie istnieje"
             })
 
-        user = authenticate(username=user.username, password=password)
+        user = authenticate(username=email, password=password)
         if not user:
             raise serializers.ValidationError({
                 "password": "Błędne hasło"
@@ -88,7 +88,7 @@ class LoginSerializer(serializers.Serializer):
 class AdminUsersSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'username', 'email', 'is_staff', 'is_superuser', 'is_active']
+        fields = ['id', 'first_name', 'email', 'is_admin', 'is_active']
 
 class UserSavedCalculatorsSerializer(serializers.ModelSerializer):
     class Meta:
