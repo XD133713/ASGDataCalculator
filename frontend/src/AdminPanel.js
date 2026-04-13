@@ -25,11 +25,9 @@ function AdminPanel() {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    username: userToEdit.email,
                     email: userToEdit.email,
                     first_name: userToEdit.first_name,
-                    is_staff: userToEdit.is_superuser,
-                    is_superuser: userToEdit.is_superuser,
+                    is_admin: userToEdit.is_admin,
                     is_active: userToEdit.is_active,
                 }),
             });
@@ -162,7 +160,7 @@ function AdminPanel() {
                                 <td>{r.id}</td>
                                 <td>{r.first_name}</td>
                                 <td>{r.email}</td>
-                                <td>{r.is_superuser ? "TAK" : "NIE"}</td>
+                                <td>{r.is_admin ? "TAK" : "NIE"}</td>
                                 <td>{r.is_active ? "TAK" : "NIE"}</td>
                                 <td><button onClick={() => {setUserToEdit({...r}); setShowUserEditWindow(true);}}>Edytuj</button></td>
                                 <td><button onClick={() => deleteUser(r.id)}>Usuń</button></td>
@@ -240,8 +238,8 @@ function AdminPanel() {
                                     onChange={(e) => setUserToEdit({...userToEdit, first_name: e.target.value,})}/></label>
                             <label className="modal-content-row modal-user-line">Email: <input type="text" value={userToEdit.email || ""} 
                                     onChange={(e) => setUserToEdit({...userToEdit, email: e.target.value,})}/></label>
-                            <label className="modal-content-row modal-user-line">Stan uprawnień administracyjnych: <input type="checkbox" checked={userToEdit.is_superuser} 
-                                    onChange={(e) => setUserToEdit({...userToEdit, is_superuser: e.target.checked, })}/></label>
+                            <label className="modal-content-row modal-user-line">Stan uprawnień administracyjnych: <input type="checkbox" checked={userToEdit.is_admin} 
+                                    onChange={(e) => setUserToEdit({...userToEdit, is_admin: e.target.checked, })}/></label>
                             <label className="modal-content-row modal-user-line">Stan aktywnosci konta: <input type="checkbox" checked={userToEdit.is_active} 
                                     onChange={(e) => setUserToEdit({...userToEdit, is_active: e.target.checked, })}/></label>
                             </div>
