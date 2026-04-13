@@ -17,6 +17,7 @@ class CustomUser(AbstractUser):
     is_admin = models.BooleanField(default=False)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+    objects = CustomUserManager()
     @property
     def is_staff(self):
         return self.is_admin
