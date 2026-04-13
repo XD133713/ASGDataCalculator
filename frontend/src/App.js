@@ -30,7 +30,7 @@ function App() {
             if (!res.ok) return;
             const data = await res.json();
             setUserFirstName(data.first_name);
-            setIsAdmin(data.is_staff);
+            setIsAdmin(data.is_admin);
         } catch (err) {
             alert("Błąd pobierania nazwy")
         }
