@@ -5,8 +5,8 @@ from django.conf import settings
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email: raise ValueError("wiadomosc")
-        email = self.normalize_enail(email)
-        user = self.model(email=email, **extra_fiels)
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save()
         return user
