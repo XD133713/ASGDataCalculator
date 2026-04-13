@@ -5,7 +5,9 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 from .models import SavedCalculator, UserCounter
 from .serializers import RegisterSerializer, UserSavedCalculatorsSerializer, LoginSerializer, AdminSavedCalculatorsSerializer, AdminUsersSerializer
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class RegisterView(APIView):
     permission_classes = [AllowAny]
@@ -38,11 +40,9 @@ class NameView(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
         return Response({
-            "username": request.user.username,
             "email": request.user.email,
             "first_name": request.user.first_name,
-            "is_staff": request.user.is_staff,
-            "is_superuser": request.user.is_superuser,
+            "is_admin": request.user.is_admin,
         })
 
 class AdminUsersViewSet(ModelViewSet):
