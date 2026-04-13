@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-ADMIN_USERNAME = os.environ.get("ADMIN_USERNAME")
 ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 ADMIN_FIRST_NAME = os.environ.get("ADMIN_FIRST_NAME")
