@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import SavedCalculator, UserCounter, CustomUser
 
-
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ('id', 'email', 'first_name', 'is_admin', 'is_active')
